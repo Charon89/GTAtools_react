@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // :{tool:{_id}}
 // :{_id, title, price, category, description, createdAt, photos:{photoSmall, photoLarge}}
 const ToolItem = ({toolReducer}) => {
-    const {_id, title, price, description, createdAt} = toolReducer;
+    const {_id, title, price, description,views, createdAt} = toolReducer;
     const [...allPhotos] = toolReducer.photos;
     const history = useHistory();
     return (
@@ -16,7 +16,8 @@ const ToolItem = ({toolReducer}) => {
             </div>
             <div>
                 <div>
-                    <small>{moment(createdAt).startOf('hour').fromNow()}</small>
+                    <small className='tool-view-fjustify'><i className="far fa-calendar-alt"></i>&nbsp;{moment(createdAt).startOf('hour').fromNow()} &nbsp;&nbsp;<i
+                        className="fas fa-eye"></i>&nbsp;{views}</small>
                     <h1>{title}</h1>
                     <hr className='sm-hide ma-1'/>
                 </div>
