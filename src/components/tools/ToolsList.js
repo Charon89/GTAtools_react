@@ -1,15 +1,17 @@
-import React, {useEffect} from 'react';
-import {getAllTools} from "../redux/actions/toolsActions";
+import React, {Fragment, useEffect} from 'react';
+import {getAllTools} from "../../redux/actions/toolsActions";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import ToolItem from "./ToolItem";
 
 const ToolsList = ({getAllTools, toolsReducer:{tools}}) => {
     useEffect(() => {
         getAllTools();
     }, [getAllTools]);
+
     return (
-        <div>Tools:
-            {tools.map(tool=><p key={tool._id}>{tool.photos[0].photoSmall}</p>)}
+        <div className='tools-list-wrapper'>
+            {tools.map(tool=><Fragment key={tool._id} ><ToolItem toolReducer={tool} /></Fragment>)}
         </div>
     );
 };
