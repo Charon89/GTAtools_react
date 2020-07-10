@@ -26,8 +26,8 @@ const ToolItem = ({toolReducer}) => {
                 </div>
             </div>
             <div>
-                <h4>Buy: {price}</h4>
-                <h4>Rent: {price}</h4>
+                <h4>Buy: ${price}</h4>
+                <h4>Rent: ${price}</h4>
             </div>
         </div>
     );
