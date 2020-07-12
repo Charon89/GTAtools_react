@@ -5,7 +5,6 @@ import {
     GET_CATEGORIES,
     TOOLS_ERROR,
     GET_TOOLS_BY_CATEGORY,
-    CLEAR_CATEGORY
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -50,11 +49,6 @@ export default function (state = initialState, action) {
                 tools: [],
                 tool: null,
                 loading: false
-            };
-        case CLEAR_CATEGORY:
-            return {
-                ...state,
-                category: '',
             };
         case TOOLS_ERROR:
             return state;

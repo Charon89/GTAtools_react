@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import logo from './assets/logo.png';
-import {getCategories, getToolsByCategory} from "../redux/actions/toolsActions";
+import {getCategories} from "../redux/actions/toolsActions";
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import DropDown from "./UI/DropDown";
@@ -15,7 +15,7 @@ const NavBar = ({toolsReducer: {categories}, getCategories}) => {
 
     const style = {
         logo: {
-            maxWidth: '50%',
+            maxWidth: '30%',
             minWidth: '70px',
         }
     }
@@ -23,7 +23,6 @@ const NavBar = ({toolsReducer: {categories}, getCategories}) => {
         <div className='header-wrapper'>
             <div className='header-links'>
                 <Link className='link' to="!#">Login</Link>
-                <Link className='link' to="!#">Register</Link>
             </div>
             <div className='header-grid'>
                 <div><img style={style.logo} src={logo} alt="Logo"/></div>

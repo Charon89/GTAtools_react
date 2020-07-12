@@ -1,12 +1,12 @@
 import React, {Fragment} from 'react';
 import moment from "moment";
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const ToolItem = ({toolReducer}) => {
     const {_id, title, price, description, views, createdAt, category} = toolReducer;
     const [...allPhotos] = toolReducer.photos;
-    const history = useHistory();
+
     return (
         <Fragment>
             <Link to={`/tool/${_id}`} style={{textDecoration: "none", color:"#000"}}>
@@ -23,7 +23,6 @@ const ToolItem = ({toolReducer}) => {
                             <div>
                                 <h1>{title}</h1>
                             </div>
-                            {/*<hr className='sm-hide ma-1'/>*/}
                         </div>
 
                         <p className='sm-hide'>{description}</p>

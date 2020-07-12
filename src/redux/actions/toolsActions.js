@@ -6,7 +6,7 @@ import {
     TOOLS_ERROR,
     GET_CATEGORIES,
     GET_TOOLS_BY_CATEGORY,
-    CLEAR_CATEGORY
+
 } from './actionTypes';
 
 const url = 'https://gtatoolsapi.herokuapp.com';
@@ -47,7 +47,6 @@ export const getTool = (toolId) => async dispatch => {
 // Get tools by category
 export const getToolsByCategory = (category) => async dispatch => {
     // dispatch({type: CLEAR_TOOLS});
-    // dispatch({type: CLEAR_CATEGORY});
     try {
         const res = await axios.get(`${url}/tools?category=${category}`);
         dispatch({

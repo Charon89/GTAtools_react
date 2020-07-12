@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 import './UI_css/DropDownStyles.css'
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getCategories, getToolsByCategory} from "../../redux/actions/toolsActions";
+import {getToolsByCategory} from "../../redux/actions/toolsActions";
 
-const DropDown = ({name, items, getCategories, getToolsByCategory}) => {
+const DropDown = ({name, items, getToolsByCategory}) => {
 
     const [toggle, setToggle] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -15,7 +15,7 @@ const DropDown = ({name, items, getCategories, getToolsByCategory}) => {
         if (container.current && !container.current.contains(e.target)) {
             setToggle(false);
         }
-    }
+    };
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -43,7 +43,7 @@ const DropDown = ({name, items, getCategories, getToolsByCategory}) => {
                             toggle && setToggle(false);
                             setSelectedCategory(item);
                         }} className='dropdown-link' to={`/tools/${item}`}>
-                            <li> {item}</li>
+                            <li>> {item}</li>
                         </Link>)
                     )}
                 </ul>
@@ -53,12 +53,11 @@ const DropDown = ({name, items, getCategories, getToolsByCategory}) => {
 };
 
 DropDown.propTypes = {
-    getCategories: PropTypes.func.isRequired,
     getToolsByCategory: PropTypes.func.isRequired,
     toolsReducer: PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
     toolsReducer: state.toolsReducer
-})
+});
 
-export default connect(mapStateToProps, {getCategories, getToolsByCategory})(DropDown);
+export default connect(mapStateToProps, {getToolsByCategory})(DropDown);

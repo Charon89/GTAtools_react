@@ -6,16 +6,17 @@ import moment from "moment";
 
 import GoButton from "../UI/GoButton";
 import Spinner from "../UI/Spinner";
+import PhotoCarousel from "../UI/PhotoCarousel";
 
 const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
 
     useEffect(() => {
         getTool(match.params.id);
+        if (tool!=null)
+            document.title = `${tool.title}`;
     }, [getTool, match.params.id]);
 
-    const [index, setIndex] = useState(0);
-
-    const style = {
+      const style = {
         shiftRight: {
             display: 'flex',
             justifyContent: 'flex-end'
@@ -23,23 +24,16 @@ const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
     }
 
     return (<Fragment>
-            {tool == null ?  (<Spinner/>) : (
+            {tool === null ?  (<Spinner/>) : (
                 <div className='container'>
                     <div className='tool-view-main'>
                         <div className='tool-view-rowSpan ma-1'>
                             <GoButton icon='fas fa-arrow-circle-left' name='Go Back'/>
                         </div>
                         <div className='tool-view-imageContainer'>
-                            <img className='tool-view-image pa-2 ' src={tool.photos[index].photoLarge}
-                                 alt={tool.title}/>
-                            <div className='ma-2'>
-                                {tool.photos.map((photo, index) =>
-                                    <img className='pa-1' onClick={() => setIndex(index)}
-                                         key={photo._id}
-                                         src={photo.photoSmall}
-                                         alt={photo.photoSmall}
-                                    />)}
-                            </div>
+
+                            <PhotoCarousel photos={tool.photos}/>
+
                         </div>
                         <div className='tool-view-descContainer'>
                             <h1 className='ma-1'>

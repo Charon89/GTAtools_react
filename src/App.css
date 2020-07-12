@@ -193,22 +193,8 @@ input[type="text"], form {
     max-width: 500px;
 }
 
-.tool-view-imageContainer > div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-}
-
-.tool-view-imageContainer > div > img {
-    max-width: 100px;
-    object-fit: scale-down;
-    cursor: pointer;
-}
-
 .tool-view-descContainer {
-    padding: 0 10px;
+    padding: 20px 20px;
 }
 
 .tool-view-fjustify {

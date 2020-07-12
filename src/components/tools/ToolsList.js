@@ -17,7 +17,7 @@ const ToolsList = ({getAllTools, loading, toolsReducer: {tools}, match}) => {
             getAllTools();
         }
 
-    }, [getAllTools, getToolsByCategory, match.params.category]);
+    }, [getAllTools, match.params.category]);
 
     return (
         <Fragment>
