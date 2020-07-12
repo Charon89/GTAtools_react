@@ -93,6 +93,8 @@ small {
 
 .categories-wrapper > div {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     max-width: 1500px;
     margin: 0 auto;
     flex-direction: row;
@@ -143,7 +145,11 @@ input[type="text"], form {
     max-height: 200px;
 }
 
-.tool-list-item > div:nth-child(2) > div > h1 {
+.tool-list-item > div:nth-child(2) > div > div {
+    width: 100%;
+}
+
+.tool-list-item > div:nth-child(2) > div > div > h1 {
     width: 100%;
     overflow: hidden;
     display: inline-block;
@@ -192,8 +198,8 @@ input[type="text"], form {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     justify-content: center;
     align-items: center;
+    justify-items: center;
 }
-
 
 .tool-view-imageContainer > div > img {
     max-width: 100px;
@@ -272,7 +278,32 @@ input[type="text"], form {
     .tool-list-item > div:nth-child(2) {
         grid-column: 2;
         grid-row: 2;
-        padding: 0 5px;
+        padding: 0 1em;
+    }
+
+    .tool-list-item > div:nth-child(2) > div {
+        display: grid;
+        grid-template-rows: auto;
+        height: 100%;
+        align-items: center;
+    }
+
+    .tool-list-item > div:nth-child(2) > div > div {
+        overflow: hidden;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+    }
+
+    .tool-list-item > div:nth-child(2) > div > div > h1 {
+        display: inline-block;
+        font-size: 1.2em;
+    }
+
+    .tool-list-item > div:nth-child(2) > div > small {
+        margin-top: 1em;
+        grid-row: 2;
     }
 
     /*image*/
@@ -284,5 +315,10 @@ input[type="text"], form {
     .tool-view-main {
         display: flex;
         flex-direction: column;
+    }
+
+    .tool-view-imageContainer img {
+        width: 50%;
+        padding: 0;
     }
 }

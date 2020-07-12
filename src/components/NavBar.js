@@ -1,8 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import logo from './assets/logo.png';
+import {getCategories, getToolsByCategory} from "../redux/actions/toolsActions";
+import {connect} from 'react-redux';
+import PropTypes from "prop-types";
+import DropDown from "./UI/DropDown";
 
-const NavBar = () => {
+
+const NavBar = ({toolsReducer: {categories}, getCategories}) => {
+
+    useEffect(() => {
+        getCategories();
+    }, [getCategories]);
+
     const style = {
         logo: {
             maxWidth: '50%',
@@ -24,7 +34,7 @@ const NavBar = () => {
             </div>
             <div className='categories-wrapper'>
                 <div>
-                    <h6 className='ma-1'><Link className='link' to='!#'> Categories</Link></h6>
+                    <DropDown name='Categories' items={categories}/>
                     <h6 className='ma-1'>Contact</h6>
                 </div>
 
@@ -33,4 +43,13 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+NavBar.propTypes = {
+    getCategories: PropTypes.func.isRequired,
+    toolsReducer: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+    toolsReducer: state.toolsReducer
+});
+
+export default connect(mapStateToProps, {getCategories})(NavBar);

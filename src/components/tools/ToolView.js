@@ -1,9 +1,11 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import GoButton from "../UI/GoButton";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getTool} from "../../redux/actions/toolsActions";
 import moment from "moment";
+
+import GoButton from "../UI/GoButton";
+import Spinner from "../UI/Spinner";
 
 const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
 
@@ -21,7 +23,7 @@ const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
     }
 
     return (<Fragment>
-            {tool == null ? "Loading" : (
+            {tool == null ?  (<Spinner/>) : (
                 <div className='container'>
                     <div className='tool-view-main'>
                         <div className='tool-view-rowSpan ma-1'>
