@@ -11,6 +11,7 @@ const Routes = () => {
             <Switch>
                 <Route exact path='/tool/:id' component={ToolView}/>
                 <Route exact path='/tools/:category' component={ToolsList}/>
+                <Route exact path='/tools/' component={ToolsList}/>
                 <Route path="*" component={NotFound}/>
             </Switch>
         </section>

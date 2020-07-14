@@ -15,7 +15,7 @@ const url = 'https://gtatoolsapi.herokuapp.com';
 export const getAllTools = () => async dispatch => {
     dispatch({type: CLEAR_TOOLS});
     try {
-        const res = await axios.get(`${url}/tools`);
+        const res = await axios.get(`${url}/tools?sortBy=postDate:desc`);
         dispatch({
             type: GET_TOOLS,
             payload: res.data

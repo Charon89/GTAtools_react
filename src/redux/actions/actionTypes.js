@@ -6,6 +6,9 @@ export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const CLEAR_TOOLS = 'CLEAR_TOOLS';
 export const CLEAR_CATEGORY = 'CLEAR_CATEGORY';
 
+export const OPEN_LOGIN = 'OPEN_LOGIN';
+export const CLOSE_LOGIN = 'CLOSE_LOGIN';
+
 
 export const TOOLS_ERROR = "TOOLS_ERROR";
 

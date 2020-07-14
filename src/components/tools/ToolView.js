@@ -12,11 +12,11 @@ const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
 
     useEffect(() => {
         getTool(match.params.id);
-        if (tool!=null)
+        if (tool != null)
             document.title = `${tool.title}`;
     }, [getTool, match.params.id]);
 
-      const style = {
+    const style = {
         shiftRight: {
             display: 'flex',
             justifyContent: 'flex-end'
@@ -24,7 +24,7 @@ const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
     }
 
     return (<Fragment>
-            {tool === null ?  (<Spinner/>) : (
+            {tool === null ? (<Spinner/>) : (
                 <div className='container'>
                     <div className='tool-view-main'>
                         <div className='tool-view-rowSpan ma-1'>
@@ -57,7 +57,6 @@ const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
                 </div>
             )}
         </Fragment>
-
     );
 };
 
