@@ -35,6 +35,10 @@ small {
     cursor: pointer;
     color: #fff;
 }
+.btn.green{
+    background-color: #006914;
+    border-bottom: 2px solid #00340d;
+}
 
 .ma-1 {
     margin: 1em;
@@ -71,9 +75,12 @@ small {
     margin: 0 auto;
     max-width: 1500px;
     display: grid;
-    grid-template-columns: 30% 1fr 100px;
+    grid-template-columns: 25% 1fr 100px;
     justify-content: center;
     align-items: center;
+}
+.header-grid img{
+    cursor: pointer;
 }
 
 .link {
@@ -91,6 +98,7 @@ small {
     align-items: center;
 }
 
+
 .categories-wrapper {
     background-color: #333;
 }
@@ -105,7 +113,7 @@ small {
 
 }
 
-input[type="text"], form {
+input[type="text"], input[type="password"], form {
     padding: 10px;
     border-radius: 5px;
     border: none;

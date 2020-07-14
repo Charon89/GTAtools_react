@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getTool} from "../../redux/actions/toolsActions";
@@ -8,12 +8,10 @@ import GoButton from "../UI/GoButton";
 import Spinner from "../UI/Spinner";
 import PhotoCarousel from "../UI/PhotoCarousel";
 
-const ToolView = ({getTool, match, toolsReducer: {tool, loading}}) => {
+const ToolView = ({getTool, match, toolsReducer: {tool}}) => {
 
     useEffect(() => {
         getTool(match.params.id);
-        if (tool != null)
-            document.title = `${tool.title}`;
     }, [getTool, match.params.id]);
 
     const style = {
