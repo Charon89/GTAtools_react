@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import {getAllTools} from "../../redux/actions/toolsActions";
 import moment from "moment";
+import Spinner from "../UI/Spinner";
+import AnimateHeight from 'react-animate-height';
 // import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 // import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
@@ -33,6 +35,9 @@ const useRowStyles = makeStyles({
     },
     open: {
         backgroundColor: '#ffffff'
+    },
+    ma1: {
+        margin: '0 15px'
     }
 });
 
@@ -43,16 +48,18 @@ function Row(props) {
 
     return (
         <React.Fragment>
-            {!row ? ("LOADING") : (
+            {!row ? (<Spinner/>) : (
                 <Fragment>
-
                     <TableRow className={open ? classes.open : classes.root}>
-                        <TableCell>
+                        <TableCell align={"center"}>
                             <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-                                {open ? <i className="far fa-caret-square-up fa-2x"></i> :
+                                {open ? <i className={"far fa-caret-square-up fa-2x"}></i> :
                                     <i className="far fa-caret-square-down fa-2x"></i>}
                             </IconButton>
                         </TableCell>
+                        <TableCell style={{maxWidth: '70px'}} component="th" scope="row"><img style={{width: '50px'}}
+                                                                                              src={row.photos[0].photoSmall}
+                                                                                              alt=""/></TableCell>
                         <TableCell component="th" scope="row">{row.title}</TableCell>
                         <TableCell align="center">{row.price}</TableCell>
                     </TableRow>
@@ -82,7 +89,7 @@ function Row(props) {
                                                 <TableCell align={"center"}>{row.quantity}</TableCell>
                                                 <TableCell align={"center"}>{row.views}</TableCell>
                                                 <TableCell align={"center"}>
-                                                    <div  style={{display: 'flex', justifyContent: "space-around"}}>
+                                                    <div style={{display: 'flex', justifyContent: "space-around"}}>
                                                         <i className="far fa-edit fa-2x"></i>
                                                         <i className="far fa-times-circle fa-2x"></i>
                                                     </div>
@@ -97,12 +104,13 @@ function Row(props) {
                     </TableRow>
                 </Fragment>
             )}
-
         </React.Fragment>
     );
 }
 
-Row.propTypes = {};
+Row.propTypes = {
+    // TO FILL!!!!
+};
 
 
 const AdminHome = ({tools}) => {
@@ -111,24 +119,58 @@ const AdminHome = ({tools}) => {
         getAllTools();
     }, [])
 
+    const [toolsheight, settoolsheight] = useState(0);
+
+    const toggleToolsHeight = () => {
+        settoolsheight(toolsheight === 0 ? 'auto' : 0);
+    }
+
     return (
-        <TableContainer component={Paper} className={classes.table}>
-            <Table aria-label="collapsible table">
-                <TableHead>
-                    <TableRow className={classes.head}>
-                        <TableCell/>
-                        <TableCell style={{fontSize:'1.4em'}}>Title</TableCell>
-                        <TableCell style={{fontSize:'1.4em'}} align="center">Price</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {tools.map((tool) => (
-                        <Row key={tool._id} row={tool}/>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
+        <Fragment>
+
+            <AnimateHeight duration={500} height={toolsheight}>
+                <div style={{
+                    margin: '0 auto', display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection:"column"
+                }}>
+                    <h1>Tools for tools ;)</h1>
+                    <p>Cool, ha?</p>
+                </div>
+            </AnimateHeight>
+
+            <TableContainer component={Paper} className={classes.table}>
+                <Table aria-label="collapsible table">
+                    <TableHead>
+                        <TableRow className={classes.head}>
+                            <TableCell style={{padding: "0"}}>
+                                <button style={{
+                                    width: '100%',
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    padding: "6px",
+                                    backgroundColor: 'rgba(0,0,0,0)',
+                                    border: 'none',
+                                    outline: "none"
+                                }} onClick={toggleToolsHeight}><i className="fas fa-cog fa-2x"></i></button>
+                            </TableCell>
+                            <TableCell style={{fontSize: '1.4em'}}>Photo</TableCell>
+                            <TableCell style={{fontSize: '1.4em'}}>Title</TableCell>
+                            <TableCell style={{fontSize: '1.4em'}} align="center">Price</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {tools.map((tool) => (
+                            <Row key={tool._id} row={tool}/>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Fragment>
+    )
+        ;
 }
 
 AdminHome.propTypes = {
