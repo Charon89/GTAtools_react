@@ -57,11 +57,11 @@ function Row(props) {
                                     <i className="far fa-caret-square-down fa-2x"></i>}
                             </IconButton>
                         </TableCell>
-                        <TableCell style={{maxWidth: '70px'}} component="th" scope="row"><img style={{width: '50px'}}
-                                                                                              src={row.photos[0].photoSmall}
-                                                                                              alt=""/></TableCell>
+                        <TableCell style={{maxWidth: '70px'}} component="th" scope="row">
+                            <img style={{width: '50px'}} src={row.photos[0].photoSmall} alt=""/>
+                        </TableCell>
                         <TableCell component="th" scope="row">{row.title}</TableCell>
-                        <TableCell align="center">{row.price}</TableCell>
+                        <TableCell align="center" scope="row">{row.price}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
@@ -76,8 +76,8 @@ function Row(props) {
                                                 {/*HERE HISTORY TITLES*/}
                                                 <TableCell align={"center"}>Date posted</TableCell>
                                                 <TableCell align={"center"}>Quantity</TableCell>
-                                                <TableCell align={"center"}>Views</TableCell>
-                                                <TableCell align={"center"}>Actions</TableCell>
+                                                <TableCell align={"center"}></TableCell>
+                                                <TableCell align={"center"}></TableCell>
 
                                             </TableRow>
                                         </TableHead>
@@ -87,10 +87,16 @@ function Row(props) {
                                                 <TableCell
                                                     align={"center"}>{moment(row.postDate).format('YYYY/MM/DD')}</TableCell>
                                                 <TableCell align={"center"}>{row.quantity}</TableCell>
-                                                <TableCell align={"center"}>{row.views}</TableCell>
+                                                {/*<TableCell align={"center"}>{row.views}</TableCell>*/}
                                                 <TableCell align={"center"}>
                                                     <div style={{display: 'flex', justifyContent: "space-around"}}>
                                                         <i className="far fa-edit fa-2x"></i>
+                                                        {/*<i className="far fa-times-circle fa-2x"></i>*/}
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell align={"center"}>
+                                                    <div style={{display: 'flex', justifyContent: "space-around"}}>
+                                                        {/*<i className="far fa-edit fa-2x"></i>*/}
                                                         <i className="far fa-times-circle fa-2x"></i>
                                                     </div>
                                                 </TableCell>
@@ -133,7 +139,7 @@ const AdminHome = ({tools}) => {
                     margin: '0 auto', display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    flexDirection:"column"
+                    flexDirection: "column"
                 }}>
                     <h1>Tools for tools ;)</h1>
                     <p>Cool, ha?</p>

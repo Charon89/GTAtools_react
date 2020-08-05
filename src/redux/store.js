@@ -9,6 +9,7 @@ const middleware = [thunk];
 
 const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 
+// use to see props changes
 // store.subscribe(()=>console.log(store.getState()))
 
 export default store;
